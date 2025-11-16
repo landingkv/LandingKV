@@ -1,0 +1,957 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+/* Variables CSS (opcional, pero útil para mantener consistencia) */
+:root {
+    --primary-color: #438343; /* Un azul vibrante, similar al del video */
+    --secondary-color: #6c757d; /* Gris para textos secundarios */
+    --text-color: #333; /* Color de texto principal */
+    --light-bg-primary: #d5f0c4;/* Fondo claro para algunas secciones */
+    --dark-bg-primary: #112012; /* Fondo claro para el footer */
+    --dark-bg: #343a40; /* Fondo oscuro para el footer */
+    --font-family: 'Montserrat', sans-serif; /* Fuente genérica, cámbiala si usas Google Fonts */
+}
+
+/* Reset y Estilos Generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #fff; /* Fondo blanco general */
+}
+
+section {
+    height: 600px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Header - Hero Section (Sección principal con el futbolista de fondo) */
+.hero-section {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Empuja el navbar arriba y el contenido al centro/abajo */
+    color: black;
+    text-align: center;
+    overflow: hidden; /* Importante para contener la imagen de fondo */
+
+    /* IMAGEN DEL FUTBOLISTA DE FONDO */
+    /* Asegúrate de que 'images/futbolista-hero.jpg' sea la ruta correcta a tu imagen */
+    background-attachment: scroll; /* Cambia a 'fixed' para un efecto parallax */
+}
+
+/* Oscurecer la imagen de fondo para que el texto resalte */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Asegura que esté justo detrás del contenido */
+}
+
+.navbar-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: white;
+
+    /* PROPIEDADES CLAVE PARA LA ANIMACIÓN */
+    position: fixed; /* ¡El wrapper debe ser fijo para moverse con el scroll! */
+    top: 0; /* Empieza desde la parte superior de la ventana */
+    left: 0;
+    z-index: 1000; /* Asegúrate de que esté por encima de todo */
+    transition: top 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Animación suave para top y opacidad */
+    /* También podrías usar transform: translateY() en el wrapper si lo prefieres,
+       pero top es más directo aquí con padding-top. */
+
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    position: relative; /* Para que esté por encima de ::before */
+    z-index: 1; /* Asegura que la navbar esté por encima de la capa oscura del fondo */
+    height: 60px;
+    width: 100%;
+
+}
+
+/* Clase para ocultar la navbar (aplicada al wrapper) */
+.navbar-wrapper.hidden {
+    top: -150px; /* Mueve el wrapper completamente fuera de la vista hacia arriba.
+                    Ajusta este valor (-150px) para que la navbar se oculte por completo,
+                    considerando su altura (80px) y el padding-top (40px). Un valor mayor
+                    asegura que no se vea nada. */
+    opacity: 0; /* La hace completamente transparente */
+    pointer-events: none; /* Deshabilita los eventos de clic cuando está oculta */
+}
+
+.navbar .logo{
+    height: 40px; /* Ajustar tamaño del logo */
+
+}
+
+.navbar .logo img {
+    width: 40px;
+    border-radius: 5px;
+}
+
+
+.navbar .nav-links{
+    color: #000;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-links ul li a:hover {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.navbar .links-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+/* About Section (destacada/problema) */
+.seccion-destacada {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 80px 60px;
+  background-color: #f9fafc;
+  gap: 40px;
+  height: 700px;
+}
+
+.contenido {
+  flex: 1;
+  max-width: 600px;
+}
+
+.contenido h2 {
+  font-size: 2.8em;
+  color: #222;
+  margin-bottom: 20px;
+}
+
+.contenido p {
+  font-size: 1.2em;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  text-align: justify;
+  width: 90%;
+}
+
+.boton {
+  display: inline-block;
+  padding: 14px 28px;
+  background-color: green;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.boton:hover {
+  background-color: #005fa3;
+}
+
+.imagen {
+  flex: 1;
+  text-align: center;
+}
+
+.imagen img {
+  max-width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .seccion-destacada {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .contenido, .imagen {
+    max-width: 100%;
+  }
+}
+
+/* sección experiencia*/
+.experiencia {
+  background-color: #A6A6A0; /* gris ligeramente más claro */
+  text-align: center;
+  height: 150px;
+}
+
+.stats-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 40px;
+  height: 100%;
+}
+
+.stat-box {
+  flex: 1;
+  min-width: 250px;
+}
+
+.stat-number {
+  font-size: 30px;
+  font-weight: bold;
+  color: #000000; /* texto en negro */
+  margin-bottom: 12px;
+}
+
+.stat-label {
+  font-size: 18px;
+  color: #ffffff; /* texto en blanco */
+  letter-spacing: 0.5px;
+}
+
+/* About Section (Quiénes somos?) */
+.quienes-somos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 40px;
+  align-items: center;
+}
+
+.box {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  flex: 1;
+  min-width: 250px;
+  height: 400px;
+}
+
+.box1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: left;
+  margin-left: 50px;
+  flex: 2;
+
+}
+
+.box1 p {
+
+font-size: 1.2em ;
+width:80%;
+text-align: justify;
+}
+
+.box1 h3{ 
+ text-align: center;
+ font-size: 1.3em;
+}
+
+.box2, .box3 {
+  box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+  
+.box3 {
+    margin-right: 50px;
+}
+
+.box2 img, .box3 img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.box h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color:green; 
+  text-align: center;
+}
+
+.box h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+
+
+
+/* Method Section (Nuestro Método KV) */
+
+
+.method-section {
+    padding: 60px 0;
+    background-color: #3c7723;
+    text-align: center;
+}
+
+.method-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.method-section .subtitle {
+    font-size: 1.1em;
+    margin-bottom: 40px;
+    color: white;
+}
+
+.method-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.method-cards .card {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex: 1;
+    min-width: 250px;
+    max-width: 280px;
+    transition: transform 0.3s ease;
+}
+
+.method-cards .card:hover {
+    transform: translateY(-5px);
+}
+
+.method-cards .card i {
+    font-size: 3em;
+    color:#1b4707;
+    margin-bottom: 15px;
+}
+
+.method-cards .card h3 {
+    font-size: 1.2em;
+    color: var(--text-color);
+}
+
+.metodo-kv {
+  background: #fff; /* Fondo blanco */
+}
+
+.contenedor-descripcion {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 600px;
+    gap: 50px;
+    width: 100%;
+}
+
+.descripcion-titulo {
+    margin-right: 60px;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    margin-top: 50px;
+    justify-content: left;
+
+}
+
+.descripcion-titulo h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.parte-verde {
+  color: green;
+}
+
+.parte-negra {
+  color: black;
+}
+
+.descripcion-titulo-texto {
+    text-align: justify;
+    margin-bottom: 100px;
+}
+
+.descripcion-imagenes {
+    margin-left: 60px;
+    display: flex;
+    justify-items: flex-start;
+    flex-direction: column;
+    height: 80%;
+}
+
+.descripcion-img1 {
+  position: relative; /* ¡Paso clave! Sirve como referencia para el párrafo */
+  width: 350px; /* Le damos el mismo ancho que la imagen para que el texto lo ocupe */
+  height: auto;
+  margin-left: 60px; /* Mantiene la separación que tenías */
+}
+
+.descripcion-img1 p {
+  position: absolute; /* ¡Paso clave! Permite posicionarlo dentro del padre */
+  bottom: 0; /* Coloca el párrafo en la parte inferior */
+  left: 0;
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente */
+  color: black;
+  padding: 15px; /* Espaciado interno para el texto */
+  margin: 0; /* Elimina márgenes por defecto */
+  text-align: center; /* Centra el texto */
+  font-style: italic; /* Opcional: para que se vea como una cita */
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.descripcion-img1 img {
+  width: 300px;
+}
+
+.contenedor-beneficios {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.beneficio {
+  max-width: 220px;
+  flex: 1;
+  text-align: center;
+  box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.beneficio .icono {
+  font-size: 30px;
+  color: green; /* Iconos verdes */
+  margin-bottom: 15px;
+}
+
+.beneficio .texto {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.beneficio .texto p {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* Services Section (Nuestros Servicios Especializados) */
+.services-section {
+    padding: 60px 0;
+    background-color: #fff;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    height: 500px;
+}
+
+.services-section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: green; 
+}
+
+.verde {
+  color: black; /* verde suave */
+}
+
+.naranja {
+  color: green /* naranja cálido */
+}
+
+.services-section .subtitle {
+    font-size: 1.1em;
+    margin-bottom: 40px;
+    color: black;
+}
+
+/* style.css */
+
+/* ... (Tu CSS existente para .services-section, .container, h2, .subtitle) ... */
+
+.service-cards {
+    display: flex;
+    justify-content: center; /* Centra las tarjetas horizontalmente */
+    gap: 20px; /* Espacio entre las tarjetas */
+    margin-top: 40px;
+    width: 100%;
+}
+
+.service-card {
+    position: relative; /* ¡Importante para posicionar el texto encima de forma absoluta! */
+    width: 280px; /* Ancho fijo para cada tarjeta (ajusta si lo necesitas) */
+    height: 175px; /* Altura fija para cada tarjeta (ajusta si lo necesitas) */
+    overflow: hidden; /* Oculta cualquier contenido que se desborde, como el texto en su estado inicial si es más grande */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+    cursor: pointer; /* Indica que es interactuable */
+    display: flex; /* Para centrar contenido si no hay overlay */
+    align-items: center; /* Centrar verticalmente el contenido si es flex */
+    justify-content: center; /* Centrar horizontalmente el contenido si es flex */
+    text-align: center; /* Centra el texto si no está posicionado absolutamente */
+}
+
+.service-card img {
+    width: 100%;
+    height: 100%; /* La imagen ocupará toda la tarjeta */
+    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse, recortando si es necesario */
+    display: block; /* Elimina cualquier espacio extra debajo de la imagen */
+    transition: transform 0.3s ease-in-out; /* Transición para el zoom en hover */
+}
+
+/* Capa de superposición para el efecto oscuro */
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Color oscuro inicial (semitransparente) */
+    transition: background-color 0.3s ease-in-out; /* Transición para el color del fondo */
+    z-index: 1; /* Asegura que esté por encima de la imagen pero debajo del texto */
+}
+
+.service-card h3 {
+    position: absolute; /* Posiciona el título sobre la imagen */
+    color: #fff; /* Color del texto blanco */
+    font-size: 1.1em; /* Tamaño de fuente inicial */
+    padding: 10px;
+    margin: 0; /* Elimina márgenes por defecto del h3 */
+    width: 80%; /* El texto ocupa el ancho de la tarjeta */
+    z-index: 2; /* Asegura que esté por encima de la imagen y el overlay */
+    /* Para centrar el texto vertical y horizontalmente */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra el elemento en sí mismo */
+    
+    /* Animación del texto */
+    transition: font-size 0.3s ease-in-out, transform 0.3s ease-in-out;
+ 
+}
+
+/* Efectos al pasar el ratón (hover) */
+.service-card:hover img {
+    transform: scale(1.1); /* Ligeramente más grande para un efecto de zoom */
+}
+
+.service-card:hover::before {
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo más oscuro al hacer hover */
+}
+
+.service-card:hover h3 {
+    /* Aquí usamos 'transform: scale()' para agrandar el texto */
+    transform: translate(-50%, -50%) scale(1.2); /* Aumenta el texto un 20% */
+    /* Si el texto se vuelve demasiado grande y quieres que se corte con puntos suspensivos: */
+    /* overflow: hidden; */
+    /* text-overflow: ellipsis; */
+}
+
+.service-card.selected-state img {
+    transform: scale(1.1);
+}
+.service-card.selected-state::before {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.service-card.selected-state h3 {
+    transform: translate(-50%, -50%) scale(1.2);
+}
+
+/* Opcional: Para darle un borde o sombra a la tarjeta cuando esté seleccionada (visualización extra) */
+.service-card.selected-state {
+    /* Por ejemplo, un borde más pronunciado o un box-shadow diferente */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más fuerte */
+    /* Puedes añadir un borde para resaltarlo aún más, pero ten cuidado con el `overflow: hidden`
+       si el borde está en la tarjeta y la imagen se agranda. Podría ser mejor un `outline`. */
+    /* outline: 2px solid var(--primary-color); */ 
+}
+
+
+.service-explanation {
+    margin-top: 40px;
+    padding: 0 30px; 
+    background-color: var(--light-bg); 
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    text-align: left;
+    color: var(--text-color);
+    
+    max-height: 0; /* Oculto por defecto */
+    overflow: hidden; /* Oculta contenido desbordado */
+    opacity: 0; /* Oculto visualmente por defecto al cerrar */
+    
+    /* Transiciones para cuando se ACTIVA (.active) y desactiva */
+    transition: max-height 0.7s ease-out, /* El barrido principal */
+                padding 0.7s ease-out, /* El padding se expande */
+                opacity 0.5s ease-in-out; /* La caja se difumina */
+}
+
+.service-explanation.active {
+    max-height: 500px; /* Suficiente para el contenido */
+    height: 150px;
+    opacity: 1; /* Visible */
+    padding: 30px; /* Padding cuando está abierto */
+}
+
+/* Estilos para el párrafo interno */
+.service-explanation p {
+    font-size: 1.1em;
+    line-height: 1.8;
+    opacity: 1; /* Visible por defecto dentro de la caja */
+    transition: opacity 0.4s ease-in-out; /* Transición para el fade-out del texto */
+}
+
+/* Clase para ocultar temporalmente el párrafo */
+.service-explanation p.fading-out {
+    opacity: 0;
+}
+
+/* --- Media Queries para responsividad (ajusta según tus necesidades) --- */
+@media (max-width: 768px) {
+    .service-card {
+        width: 90%; /* Las tarjetas ocupan casi todo el ancho en móviles */
+        height: 200px; /* Ajusta la altura si es necesario para móviles */
+    }
+}
+
+@media (max-width: 480px) {
+    .service-card {
+        height: 180px;
+    }
+    .service-card h3 {
+        font-size: 1.1em;
+    }
+    .service-card:hover h3 {
+        font-size: 1.3em;
+    }
+}
+
+.view-all-services-button {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+    display: inline-block; /* Para aplicar padding y margin */
+}
+
+.view-all-services-button:hover {
+    background-color: #0056b3;
+    text-decoration: none;
+}
+
+.view-all-services-button i {
+    margin-left: 10px;
+}
+
+/* Testimonial Section (Testimonios) */
+.testimonios {
+  background-color: #A6A6A0; /* gris elegante */
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  font-weight: 300;
+  flex-wrap: wrap;
+  text-align: center;
+  height: 230px;
+}
+
+.testimonial {
+  flex: 1;
+  max-width: 45%;
+  color: #000;
+}
+
+.testimonial-text {
+  font-size: 18px;
+  line-height: 1.8;
+  letter-spacing: 0.3px;
+  margin-bottom: 20px;
+  font-style: italic; 
+}
+
+.testimonial-name {
+  font-weight: bold; /* nombre en negrita */
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.stars {
+  font-size: 18px;
+  color: #FFD700; /* amarillo dorado */
+  letter-spacing: 2px;
+}
+
+
+/* Contact Section (Conecta con nosotros) */
+.contact-section {
+    padding: 60px 0;
+    background-color: #fff;
+    text-align: center;
+    height: 400px;
+}
+
+.contact-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.contact-section p {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+}
+
+.contact-info {
+    border-top: 1px solid #eee;
+    padding-top: 30px;
+    margin-top: 30px;
+}
+
+.contact-info h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.contact-info p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centrar los iconos y texto */
+    gap: 10px;
+}
+
+.contact-info p i {
+    color: var(--primary-color);
+}
+
+.contacto {
+  position: relative;
+  display: inline-block;
+}
+
+.boton-contacto {
+  background-color: green;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 160px;
+
+}
+
+.boton-contacto:hover {
+  background-color: green;
+}
+
+.opciones-contacto {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 10px;
+  z-index: 10;
+}
+
+.opciones-contacto a {
+  text-decoration: none;
+  color: #333;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  display: block;
+}
+
+.opciones-contacto a:hover {
+  background-color: #f0f0f0;
+}
+
+.azul {
+  color: #28a745;
+  font-weight: bold;
+}
+
+
+/* Footer */
+footer {
+    background-color: var(--dark-bg);
+    color: #fff;
+    padding: 40px 0;
+    text-align: center;
+}
+
+footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+footer .footer-links ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+footer .footer-links ul li a {
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+footer .footer-links ul li a:hover {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.social-links {
+    margin-top: 15px;
+}
+
+.social-links a {
+    color: #fff;
+    font-size: 1.5em;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Media Queries para Responsividad (Ejemplos, ajusta según necesidad) */
+@media (max-width: 992px) {
+    .navbar .nav-links {
+        display: none; /* O implementar un menú hamburguesa/toggle para móviles */
+    }
+    .hero-content h1 {
+        font-size: 2.8em;
+    }
+    .about-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    .about-text, .about-kiko {
+        max-width: 80%;
+    }
+    .testimonial-content {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .hero-content h1 {
+        font-size: 2.2em;
+    }
+    .method-cards, .service-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+    .method-cards .card, .service-cards .service-card {
+        max-width: 90%;
+    }
+    footer .container {
+        text-align: center;
+    }
+    footer .footer-links ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        height: 500px;
+    }
+    .hero-content h1 {
+        font-size: 1.8em;
+    }
+    .navbar .contact-button {
+        padding: 8px 15px;
+    }
+    h2 {
+        font-size: 2em;
+    }
+    .contact-info p {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
