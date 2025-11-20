@@ -815,25 +815,38 @@ text-align: justify;
 }
 
 .opciones-contacto {
-  display: none;
-  flex-direction: column;
-  position: absolute;
-  top: 50px;
-  left: 0;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  padding: 10px;
-  z-index: 10;
+    display: none;
+    flex-direction: column;
+    /* --- INICIO de los cambios para centrar --- */
+    position: absolute;
+    top: 50px;
+    /* Centrar horizontalmente */
+    left: 50%;
+    transform: translateX(-50%);
+    /* --- FIN de los cambios para centrar --- */
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 10px 0; /* Padding ajustado para mejor visualización */
+    z-index: 10;
+    /* Añadir un ancho mínimo para que los enlaces no se rompan */
+    min-width: 250px; /* Ajusta este valor si es necesario */
 }
 
 .opciones-contacto a {
-  text-decoration: none;
-  color: #333;
-  padding: 8px 12px;
-  font-size: 0.95rem;
-  display: block;
+    text-decoration: none;
+    color: #333;
+    /* Asegura que el padding horizontal solo afecte al texto y no rompa la línea */
+    padding: 8px 20px;
+    font-size: 0.95rem;
+    display: block;
+    /* Centrar el texto e ícono dentro del enlace */
+    text-align: left;
+    display: flex; /* Usar flexbox para alinear el ícono y el texto */
+    align-items: center;
+    gap: 8px; /* Espacio entre ícono y texto */
+    white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
 }
 
 .opciones-contacto a:hover {
@@ -954,4 +967,5 @@ footer .footer-links ul li a:hover {
         flex-direction: column;
         gap: 5px;
     }
+
 }
