@@ -26,7 +26,14 @@ body {
 }
 
 section {
-    height: 600px;
+    width: 100%;
+    padding: 80px 20px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 .container {
@@ -90,6 +97,7 @@ ul {
     justify-content: center;
     width: 100%;
     background-color: white;
+    padding: 10px 24px;
 
     /* PROPIEDADES CLAVE PARA LA ANIMACIÓN */
     position: fixed; /* ¡El wrapper debe ser fijo para moverse con el scroll! */
@@ -106,13 +114,14 @@ ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
     padding-left: 20px;
     padding-right: 20px;
     position: relative; /* Para que esté por encima de ::before */
     z-index: 1; /* Asegura que la navbar esté por encima de la capa oscura del fondo */
-    height: 60px;
+    min-height: 60px;
     width: 100%;
-
 }
 
 /* Clase para ocultar la navbar (aplicada al wrapper) */
@@ -151,7 +160,16 @@ ul {
 .navbar .links-wrapper {
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.navbar .links-wrapper a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 10px;
 }
 
 /* About Section (destacada/problema) */
@@ -162,12 +180,13 @@ ul {
   padding: 80px 60px;
   background-color: #f9fafc;
   gap: 40px;
-  height: 700px;
+    flex-wrap: wrap;
 }
 
 .contenido {
   flex: 1;
-  max-width: 600px;
+    min-width: 280px;
+    max-width: 600px;
 }
 
 .contenido h2 {
@@ -213,21 +232,50 @@ ul {
 
 /* Responsive */
 @media (max-width: 768px) {
+  
   .seccion-destacada {
+    /* 1. Cambio de Layout: Apila contenido e imagen */
     flex-direction: column;
     text-align: center;
+    
+    /* 2. Ajuste de Espaciado: Reduce el padding para usar mejor el espacio */
+    padding: 40px 20px; /* Reducimos 80px a 40px y 60px a 20px */
+    
+    /* 3. CLAVE: Elimina la altura fija. El contenido debe dictar la altura. */
+    height: auto; 
+    gap: 30px; /* Reducimos ligeramente el espacio entre elementos */
   }
 
-  .contenido, .imagen {
+  .contenido {
+    /* Asegura que el contenedor de texto utilice el ancho completo */
     max-width: 100%;
+    /* Añadimos espacio entre el texto (arriba) y la imagen (abajo) */
+    margin-bottom: 20px; 
   }
-}
+
+  /* 4. Ajuste de Tipografía: Para que el titular no sea demasiado grande en móvil */
+  .contenido h2 {
+    font-size: 2em; /* Reducido de 2.8em */
+    margin-bottom: 15px;
+  }
+
+  .contenido p {
+    /* Centra el texto en el móvil (diferente de 'justify' en escritorio) */
+    text-align: center; 
+    
+    /* Asegura que ocupe todo el ancho sin desbordamiento */
+    width: 100%; 
+    font-size: 1.1em; /* Ligeramente más pequeño para mejor lectura */
+  }
+
+  /* El .boton y la .imagen ya están bien con max-width: 100% y text-align: center */
+} 
 
 /* sección experiencia*/
 .experiencia {
   background-color: #A6A6A0; /* gris ligeramente más claro */
   text-align: center;
-  height: 150px;
+    padding: 40px 20px;
 }
 
 .stats-container {
@@ -273,8 +321,7 @@ ul {
   padding: 20px;
   border-radius: 8px;
   flex: 1;
-  min-width: 250px;
-  height: 400px;
+        min-width: 250px;
 }
 
 .box1 {
@@ -328,8 +375,84 @@ text-align: justify;
   margin-bottom: 10px;
 }
 
+@media (max-width: 768px) {
+    /* --- SECCIÓN QUIÉNES SOMOS --- */
+    
+    .quienes-somos {
+        flex-direction: column; /* Apilamiento Vertical */
+        padding: 40px 20px; 
+        gap: 30px; 
+        
+        /* 🔑 FUERZA EL CENTRADO DE LA SECCIÓN */
+        align-items: center; 
+        justify-content: center;
+        text-align: center;
+    }
 
+    .box {
+        height: auto; 
+        min-width: 100%; 
+        flex: none;
+        padding: 30px 20px;
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1); 
+        
+        /* 🔑 ASEGURA QUE LA CAJA OCUPA EL 100% y que su contenido esté centrado */
+        width: 100%;
+        margin: 0 auto; /* Centra la caja si el min-width no es 100% */
+        text-align: center;
+    }
+    
+    /* 🔑 ORDEN EXPLÍCITO para asegurar Box 1, Box 2, Box 3 */
+    
+    /* Box 1 (Título/Historia) - Primer elemento */
+    .box1 {
+        order: 1; 
+        margin-left: 0; /* Elimina margen de escritorio */
+        align-items: center; 
+        /* Los elementos internos de box1 deben centrarse, ya que son flex column */
+        width: 100%; 
+    }
+    
+    .box1 h2, .box1 h3 {
+        width: 100%;
+        text-align: center;
+        margin: 0 auto 10px auto; /* Centra los títulos */
+    }
 
+    .box1 p {
+        width: 100%;
+        text-align: center; /* Forzar centrado del párrafo */
+        font-size: 1.1em;
+    }
+    
+    /* Box 2 y 3 (Integrantes) - Segundo y Tercer elemento */
+    .box2 {
+        order: 2; 
+        margin: 0; 
+    }
+
+    .box3 {
+        order: 3; 
+        margin-right: 0; 
+    }
+    
+    .box h2 {
+        font-size: 1.8em; 
+    }
+
+    .box h3 {
+        font-size: 1.2em; /* Para los nombres */
+    }
+    
+    .box p {
+        font-size: 1em; /* Para la descripción de los integrantes */
+        text-align: center; /* Forzar centrado de la descripción */
+    }
+    
+    .box2 img, .box3 img {
+        margin: 0 auto 15px auto; /* Centra las imágenes circulares */
+    }
+}
 
 /* Method Section (Nuestro Método KV) */
 
@@ -395,9 +518,10 @@ text-align: justify;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    height: 600px;
+    min-height: 0;
     gap: 50px;
     width: 100%;
+    flex-wrap: wrap;
 }
 
 .descripcion-titulo {
@@ -407,6 +531,7 @@ text-align: justify;
     align-self: flex-start;
     margin-top: 50px;
     justify-content: left;
+    max-width: 520px;
 
 }
 
@@ -434,14 +559,15 @@ text-align: justify;
     display: flex;
     justify-items: flex-start;
     flex-direction: column;
-    height: 80%;
+    height: auto;
 }
 
 .descripcion-img1 {
   position: relative; /* ¡Paso clave! Sirve como referencia para el párrafo */
-  width: 350px; /* Le damos el mismo ancho que la imagen para que el texto lo ocupe */
-  height: auto;
-  margin-left: 60px; /* Mantiene la separación que tenías */
+    width: 100%;
+    max-width: 360px; /* Le damos el mismo ancho que la imagen para que el texto lo ocupe */
+    height: auto;
+    margin-left: 0;
 }
 
 .descripcion-img1 p {
@@ -460,7 +586,7 @@ text-align: justify;
 }
 
 .descripcion-img1 img {
-  width: 300px;
+    width: 100%;
 }
 
 .contenedor-beneficios {
@@ -474,7 +600,10 @@ text-align: justify;
   max-width: 220px;
   flex: 1;
   text-align: center;
-  box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2);
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2);
+    padding: 20px 15px;
 }
 
 .beneficio .icono {
@@ -484,10 +613,9 @@ text-align: justify;
 }
 
 .beneficio .texto {
-  background: #f9f9f9;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
 }
 
 .beneficio .texto p {
@@ -502,8 +630,6 @@ text-align: justify;
     background-color: #fff;
     text-align: center;
     width: 100%;
-    display: flex;
-    height: 500px;
 }
 
 .services-section h2 {
@@ -536,6 +662,7 @@ text-align: justify;
     gap: 20px; /* Espacio entre las tarjetas */
     margin-top: 40px;
     width: 100%;
+    flex-wrap: wrap;
 }
 
 .service-card {
@@ -650,7 +777,6 @@ text-align: justify;
 
 .service-explanation.active {
     max-height: 500px; /* Suficiente para el contenido */
-    height: 150px;
     opacity: 1; /* Visible */
     padding: 30px; /* Padding cuando está abierto */
 }
@@ -720,7 +846,7 @@ text-align: justify;
   font-weight: 300;
   flex-wrap: wrap;
   text-align: center;
-  height: 230px;
+    padding-bottom: 40px;
 }
 
 .testimonial {
@@ -755,7 +881,6 @@ text-align: justify;
     padding: 60px 0;
     background-color: #fff;
     text-align: center;
-    height: 400px;
 }
 
 .contact-section h2 {
@@ -906,66 +1031,123 @@ footer .footer-links ul li a:hover {
     color: var(--primary-color);
 }
 
-/* Media Queries para Responsividad (Ejemplos, ajusta según necesidad) */
-@media (max-width: 992px) {
-    .navbar .nav-links {
-        display: none; /* O implementar un menú hamburguesa/toggle para móviles */
+/* Media Queries para Responsividad */
+@media (max-width: 1024px) {
+    .navbar {
+        justify-content: center;
     }
-    .hero-content h1 {
-        font-size: 2.8em;
+
+    .descripcion-titulo {
+        margin: 30px 0 0;
+        align-self: center;
+        text-align: center;
     }
-    .about-content {
-        flex-direction: column;
+
+    .descripcion-titulo-texto {
+        margin-bottom: 40px;
+    }
+
+    .descripcion-imagenes {
+        margin-left: 0;
         align-items: center;
-    }
-    .about-text, .about-kiko {
-        max-width: 80%;
-    }
-    .testimonial-content {
-        flex-direction: column;
     }
 }
 
 @media (max-width: 768px) {
+    section {
+        padding: 60px 16px;
+    }
+
     .navbar {
-        flex-direction: column;
-        gap: 15px;
-    }
-    .hero-content h1 {
-        font-size: 2.2em;
-    }
-    .method-cards, .service-cards {
-        flex-direction: column;
-        align-items: center;
-    }
-    .method-cards .card, .service-cards .service-card {
-        max-width: 90%;
-    }
-    footer .container {
-        text-align: center;
-    }
-    footer .footer-links ul {
         flex-direction: column;
         gap: 10px;
     }
-}
 
-@media (max-width: 480px) {
-    .hero-section {
-        height: 500px;
+    .links-wrapper nav {
+        width: 100%;
+        text-align: center;
     }
-    .hero-content h1 {
-        font-size: 1.8em;
+
+    .contenido h2 {
+        font-size: 2.2em;
     }
-    .navbar .contact-button {
-        padding: 8px 15px;
+
+    .contenido p,
+    .box p,
+    .descripcion-titulo-texto {
+        font-size: 1em;
     }
-    h2 {
-        font-size: 2em;
+
+    .contenedor-descripcion {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
+
+    .beneficio {
+        max-width: 280px;
+    }
+
+    .stats-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .service-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .service-card {
+        width: 100%;
+        max-width: 360px;
+    }
+
+    .testimonios {
+        gap: 20px;
+        flex-direction: column;
+    }
+
     .contact-info p {
         flex-direction: column;
-        gap: 5px;
+        gap: 6px;
     }
 
+    footer .footer-links ul {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    h2 {
+        font-size: 1.8em;
+    }
+
+    .contenido h2 {
+        font-size: 1.8em;
+    }
+
+    .navbar-wrapper {
+        display: none;
+    }
+
+    .descripcion-img1 p {
+        position: static;
+        background-color: transparent;
+        padding: 10px 0 0;
+    }
+
+    .service-card {
+        height: 200px;
+    }
+
+    .service-card h3 {
+        font-size: 1em;
+    }
+
+    .boton,
+    .boton-contacto {
+        width: 100%;
+    }
 }
